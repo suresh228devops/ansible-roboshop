@@ -2,8 +2,8 @@
   hosts: shipping
   become: yes
   tasks:
-  - name: insatll mavan and mysql
-    ansible.builtin.pip:
+  - name: insatll maven and mysql
+    ansible.builtin.dnf:
       name: "{{ item }}"
       state: present
     loop:
