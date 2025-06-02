@@ -2,10 +2,10 @@
   hosts: user
   become: yes
   tasks:
-  - name: disable defauly nodejs
+  - name: disable default nodejs
     ansible.builtin.command: dnf module disable nodejs -y
 
-  - name: enable  nodejs:20
+  - name: enable nodejs:20
     ansible.builtin.command: dnf module enable nodejs:20 -y
 
   - name: Install nodejs
@@ -27,9 +27,9 @@
 
   - name: download user code
     ansible.builtin.get_url:
-      url: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip
+      url: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip 
       dest: /tmp/user.zip
-  
+
   # this module thinks file exist on ansible control server, needs to extract on to remote machine
   # remote_src: yes means files already exist in user server
   - name: extract user code
@@ -38,7 +38,7 @@
       dest: /app
       remote_src: yes
 
-  - name: Install dependencies
+  - name: install dependencies
     community.general.npm:
       path: /app
 
@@ -47,12 +47,13 @@
       src: user.service
       dest: /etc/systemd/system/user.service
 
-  - name: system deamon reload
+  - name: systemctl deamon reload
     ansible.builtin.systemd_service:
       daemon_reload: true
-  
+
   - name: start and enable user
     ansible.builtin.service:
       name: user
       state: started
       enabled: yes
+  
