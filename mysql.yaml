@@ -1,5 +1,5 @@
 - name : configure msql component
-  hosts: msql
+  hosts: mysql
   become: yes
   tasks:
   - name: insatll mysql server
