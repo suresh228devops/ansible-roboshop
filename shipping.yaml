@@ -5,7 +5,7 @@
   - name: insatll mavan and mysql
     ansible.builtin.pip:
       name: "{{ item }}"
-      state: installed
+      state: present
     loop:
     - maven
     - mysql
