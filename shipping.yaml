@@ -3,7 +3,7 @@
   become: yes
   tasks:
   - name: insatll mavan and mysql
-    ansible.builtin.dnf:
+    ansible.builtin.pip:
       name: "{{ item }}"
       state: installed
     loop:
